@@ -1,0 +1,374 @@
+Crée un site web COMPLET pour "Vision Studio 360" - studio de visualisation architecturale.
+
+INSPIRATION : https://beautyandthebit.com/
+
+═══════════════════════════════════════════════════════════════
+NAVIGATION GLOBALE (sur toutes les pages)
+═══════════════════════════════════════════════════════════════
+
+Header fixe en haut (fond transparent sur hero, blanc avec ombre sur scroll) :
+- Logo "Vision Studio 360" à gauche (avec icône cube 3D)
+- Menu horizontal à droite :
+  * Home
+  * Featured
+  * Gallery
+  * Interactive
+  * About
+  * Contact
+- Responsive : menu hamburger sur mobile
+
+═══════════════════════════════════════════════════════════════
+PAGE HOME - STRUCTURE EN 2 ÉCRANS SEULEMENT
+═══════════════════════════════════════════════════════════════
+
+🎯 ÉCRAN 1 - HERO (100vh, plein écran, pas de scroll visible) :
+- Image/vidéo background architectural photoréaliste plein écran
+- Overlay noir transparent (opacity 0.3)
+- Navigation transparente en haut
+- Centré verticalement et horizontalement :
+  * "Vision Studio 360" (très grand, blanc, bold, 72px)
+  * "Crafting Visual Identities For Architecture" (moyen, blanc, italic, 24px)
+- Flèche animée "scroll down" en bas centre
+- C'EST TOUT ! Rien d'autre sur cet écran.
+
+🎯 ÉCRAN 2 - CONTENU (apparaît UNIQUEMENT après scroll ou clic flèche) :
+
+Section Intro (fond blanc, padding généreux, centré) :
+- Titre : "Vision Studio 360" (48px, centré, noir, bold)
+- Sous-titre : "Transforming Architectural Visions Into Immersive Visual Experiences" (24px, italic, centré, gris)
+- Paragraphe court (3-4 lignes max, 16px, centré, max-width: 800px)
+
+Section Catégories (GRILLE 4 COLONNES, sans espaces entre) :
+┌──────────────┬──────────────┬──────────────┬──────────────┐
+│   Image 1    │   Image 2    │   Image 3    │   Image 4    │
+│  (600px h)   │  (600px h)   │  (600px h)   │  (600px h)   │
+│              │              │              │              │
+│  Featured    │   Gallery    │ Interactive  │    About     │
+│  Curated     │   Stills &   │   VR & 360   │ Our Studio   │
+│  Projects    │  Animations  │              │              │
+└──────────────┴──────────────┴──────────────┴──────────────┘
+
+Chaque carte :
+- Image pleine hauteur (600px)
+- Overlay noir (opacity 0.4)
+- Texte blanc centré verticalement et horizontalement
+- Titre en gras (32px)
+- Sous-titre en italique en dessous (18px)
+- Hover : zoom 1.05 + overlay devient opacity 0.6
+- Cliquable → redirige vers la page correspondante
+
+Footer :
+- "Legal & Privacy" à gauche
+- Icônes Instagram + LinkedIn à droite
+- Fond blanc, padding: 40px
+
+⚠️ IMPORTANT POUR LA PAGE HOME :
+- SEULEMENT 2 ÉCRANS : Hero plein écran + Contenu (intro + grille)
+- PAS de sections multiples avant la grille
+- PAS de blocs services
+- PAS de textes inutiles
+- Maximum de minimalisme
+
+═══════════════════════════════════════════════════════════════
+PAGE FEATURED (Projets Phares)
+═══════════════════════════════════════════════════════════════
+
+HERO (100vh) :
+- Grande image d'un projet featured
+- Overlay noir (opacity 0.4)
+- Titre en overlay centré : "Featured" (72px, blanc, bold)
+- Sous-titre : "Curated Projects" (24px, blanc, italic)
+- Navigation en haut (fond transparent)
+
+CONTENU (fond blanc) :
+- Grille de projets (2 colonnes sur desktop, 1 sur mobile, gap: 60px)
+- Padding généreux (120px top/bottom, container max-width: 1400px)
+
+Chaque projet :
+- Image grande taille (aspect ratio 16:9, min-height: 500px)
+- Overlay au hover avec opacity 0.6
+- Nom du projet apparaît centré au hover (blanc, bold, 32px)
+- Sous le projet : nom client/architecte (gris, 14px, centré)
+
+Exemples de projets (6-8 projets) :
+1. "Ministère de la Défense" - R-chitects26
+2. "Villa RIV2" - AOCARRE/IDBYM
+3. "Immeuble Zephyre" - R-chitects26
+4. "Villa Lagune" - R-chitects26
+5. "Parisha Building" - R-chitects26
+6. "MTN Korhogo Agency" - Ligne D Architectes
+
+Clic sur projet → Lightbox plein écran :
+- Fond noir opacity 0.95
+- Image centrée (max 90vw, max 90vh)
+- Titre projet en haut
+- Flèches navigation gauche/droite
+- Bouton fermer (X) en haut à droite
+- Clic en dehors = fermeture
+
+═══════════════════════════════════════════════════════════════
+PAGE GALLERY (Galerie complète)
+═══════════════════════════════════════════════════════════════
+
+HERO (100vh) :
+- Image/animation architecturale immersive
+- Overlay noir (opacity 0.4)
+- Titre : "Gallery" (72px, blanc, bold, centré)
+- Sous-titre : "Stills & Animations" (24px, blanc, italic, centré)
+
+CONTENU :
+
+Filtres (centré, padding: 60px 0) :
+- Boutons : All | Exteriors | Interiors | Animations
+- Style : bordure noire, fond blanc, hover = fond noir + texte blanc
+- Espacement entre boutons : 20px
+
+Grille masonry (3 colonnes desktop, 2 tablet, 1 mobile) :
+- Images hauteurs variables (aspect ratios variés)
+- Gap : 30px
+- Hover : overlay noir + zoom 1.03
+- Badge "PLAY" sur vidéos (icône triangle blanc)
+- Clic → lightbox
+
+Lightbox :
+- Même système que Featured
+- Support images ET vidéos
+
+═══════════════════════════════════════════════════════════════
+PAGE INTERACTIVE (VR & 360°)
+═══════════════════════════════════════════════════════════════
+
+HERO (100vh) :
+- Image immersive (perspective 360 ou VR)
+- Overlay noir (opacity 0.4)
+- Titre : "Interactive" (72px, blanc, bold, centré)
+- Sous-titre : "Virtual Reality & 360° Experiences" (24px, blanc, italic, centré)
+
+CONTENU :
+
+Section explicative (centré, fond blanc, padding: 120px 0) :
+- Titre : "Exploring New Dimensions" (48px, noir, bold, centré)
+- Texte (max-width: 800px, centré, 18px, line-height: 1.8) :
+  "This section showcases our interactive experiences, where architecture and technology merge to create immersive journeys. From virtual reality environments to 360° imagery, each project invites the viewer to step inside the story."
+
+Section projets VR (grille 2 colonnes, gap: 60px) :
+Chaque projet :
+- Image grande (aspect ratio 16:9, min-height: 500px)
+- Badge en haut à gauche : "VR" ou "360°" (fond noir, texte blanc)
+- Nom projet en overlay au hover
+- Description courte sous l'image
+- Bouton "Experience" (optionnel, simulé)
+
+Exemples :
+- "Villa Lagune VR Walkthrough"
+- "Parisha Building 360° Tour"
+- "Ministère Interior VR Experience"
+
+Technologies (section fond gris clair, padding: 80px 0) :
+- Titre : "Powered By" (centré)
+- Logos/texte : Unreal Engine 5 | Lumion | 360° Tours
+
+═══════════════════════════════════════════════════════════════
+PAGE ABOUT (À propos)
+═══════════════════════════════════════════════════════════════
+
+HERO (100vh) :
+- Image workspace/architecture inspiring
+- Overlay noir (opacity 0.4)
+- Titre : "About" (72px, blanc, bold, centré)
+- Sous-titre : "Our Studio & Approach" (24px, blanc, italic, centré)
+
+CONTENU (fond blanc, sections espacées) :
+
+Section 1 - Notre Histoire (padding: 120px 0, centré, max-width: 900px) :
+Titre : "Vision Studio 360" (48px, noir, bold)
+Texte (18px, line-height: 1.8) :
+"Vision Studio 360 is a boutique architectural visualization studio based in Abidjan, Côte d'Ivoire. We are a collective of multidisciplinary artists united by a shared passion for storytelling through visual language. As a boutique studio, every image, every animation, and every narrative is the result of a careful, thoughtful process, designed to elevate architectural ideas into powerful visual experiences."
+
+Section 2 - Statistiques (fond gris clair, padding: 80px 0) :
+Grille 3 colonnes, centrées :
+- "6+ Years" / "Experience"
+- "50+ Projects" / "Completed"
+- "100%" / "Client Satisfaction"
+Style : chiffres grand (64px, bold), texte petit (16px)
+
+Section 3 - Expertise (padding: 120px 0) :
+Layout 2 colonnes (50/50) :
+
+Colonne gauche - "Our Services" :
+- Architectural Visualization
+- Interior Design 3D
+- Cinematic Animations
+- Virtual Reality Experiences
+- BIM Integration
+- Technical Drawings
+
+Colonne droite - "Technologies" :
+- ArchiCAD, AutoCAD
+- 3ds Max, Lumion
+- Unreal Engine 5
+- Adobe Creative Suite
+- VR Development
+- BIM Tools
+
+Section 4 - Équipe (fond blanc, padding: 80px 0, centré) :
+- Photo (optionnelle, 200x200px, border-radius: 50%)
+- "Hans Daniel ZADY"
+- "Founder & Lead 3D Visualizer"
+- Texte court bio (2-3 lignes)
+- Bouton LinkedIn
+
+═══════════════════════════════════════════════════════════════
+PAGE CONTACT
+═══════════════════════════════════════════════════════════════
+
+HERO (60vh, plus court que les autres) :
+- Image sobre (architecture ou workspace)
+- Overlay noir (opacity 0.5)
+- Titre : "Contact" (72px, blanc, bold, centré)
+- Sous-titre : "Let's Create Something Extraordinary" (24px, blanc, italic, centré)
+
+CONTENU (fond blanc, padding: 120px 0) :
+
+Layout 2 colonnes (60/40) :
+
+Colonne gauche - Formulaire :
+Titre : "Start a Project" (32px, noir, bold)
+
+Champs (minimalistes, bordure bottom seulement) :
+- Full Name *
+- Email *
+- Phone (optional)
+- Project Type (dropdown : Residential | Commercial | Interior | VR/360 | Other)
+- Message * (textarea, height: 150px)
+
+Bouton "Send Message" :
+- Fond noir, texte blanc, padding: 15px 50px
+- Hover : fond blanc, bordure noire, texte noir
+- Transition smooth
+
+Colonne droite - Informations :
+Titre : "Get In Touch" (24px, noir, bold)
+
+Infos (spacing généreux entre chaque) :
+📧 Email : lialidaniel18@gmail.com
+📱 Phone : +225 07 13 41 25 59
+📍 Location : Abidjan, Côte d'Ivoire
+🔗 LinkedIn : [icône cliquable]
+
+Section carte (optionnelle, full-width, padding-top: 60px) :
+- Intégration Google Maps ou image carte stylisée
+- Height : 400px
+
+═══════════════════════════════════════════════════════════════
+STYLE GLOBAL (toutes pages)
+═══════════════════════════════════════════════════════════════
+
+Couleurs :
+- Noir : #000000
+- Blanc : #FFFFFF
+- Gris foncé : #333333
+- Gris moyen : #666666
+- Gris clair : #F5F5F5
+- Overlay : rgba(0,0,0,0.4)
+
+Typographie :
+- Font : 'Inter' ou 'Helvetica Neue', sans-serif
+- Hero titles : 72px, font-weight: 700, letter-spacing: -2px
+- Section titles : 48px, font-weight: 700
+- Subtitles : 24px, font-style: italic, font-weight: 300
+- Body : 16-18px, line-height: 1.6-1.8
+- Small : 14px
+
+Espacements :
+- Section padding : 120px top/bottom, 60px left/right
+- Container max-width : 1400px, margin: 0 auto
+- Gap grilles : 30-60px selon contexte
+- Généreux espaces blancs
+
+Animations :
+- Smooth scroll : behavior: smooth
+- Fade in au scroll (intersection observer, opacity 0→1, translateY 30px→0)
+- Transitions : all 0.6s cubic-bezier(0.4, 0, 0.2, 1)
+- Parallax hero : translateY basé sur scrollY (subtil, factor 0.3)
+- Hover images : transform scale(1.05), duration 0.6s
+
+Images :
+- Object-fit : cover
+- Object-position : center
+- Lazy loading : loading="lazy"
+- Alt texts descriptifs
+
+Responsive Breakpoints :
+- Desktop : > 1024px
+- Tablet : 768px - 1024px (grilles 4→2)
+- Mobile : < 768px (grilles 2→1, menu hamburger)
+
+Navigation mobile :
+- Hamburger icon (3 lignes) en haut à droite
+- Menu full-screen overlay (fond noir opacity 0.95)
+- Items centés verticalement
+- Animation slide-in from right
+
+═══════════════════════════════════════════════════════════════
+FONCTIONNALITÉS JS
+═══════════════════════════════════════════════════════════════
+
+✅ Smooth scroll navigation
+✅ Intersection Observer (fade in éléments au scroll)
+✅ Lightbox projets (navigation, fermeture)
+✅ Filtres portfolio (animation fade)
+✅ Menu hamburger mobile (toggle)
+✅ Header transparent→blanc au scroll (50px threshold)
+✅ Bouton "back to top" (apparaît après 500px scroll)
+✅ Validation formulaire contact (HTML5 + JS custom)
+✅ Parallax subtil sur hero images
+
+═══════════════════════════════════════════════════════════════
+SEO & PERFORMANCE
+═══════════════════════════════════════════════════════════════
+
+Meta tags :
+- Title : "Vision Studio 360 | Architectural Visualization Abidjan"
+- Description : "Premium 3D architectural visualization studio in Abidjan. Photorealistic renderings, VR experiences, and cinematic animations."
+- Keywords : architectural visualization, 3D rendering, Abidjan, VR
+- Open Graph tags pour social sharing
+
+Images :
+- Placeholders Unsplash (keywords : modern architecture, interior design, luxury homes)
+- Alt texts descriptifs
+- Lazy loading
+- WebP format (fallback JPG)
+
+Performance :
+- CSS minifié
+- JS defer/async
+- Preload fonts
+- Optimize images
+
+Accessibilité :
+- ARIA labels
+- Contraste suffisant (WCAG AA)
+- Focus visible
+- Keyboard navigation
+
+═══════════════════════════════════════════════════════════════
+IMPORTANT - RÈGLES STRICTES
+═══════════════════════════════════════════════════════════════
+
+✅ Page HOME = 2 écrans UNIQUEMENT (hero + contenu avec grille 4 cartes)
+✅ Design ultra minimaliste et épuré
+✅ Généreux espaces blancs partout
+✅ Animations smooth et subtiles
+✅ Images haute qualité (placeholders professionnels)
+✅ Code propre, commenté, organisé
+✅ Mobile-first responsive
+✅ Performance optimisée
+
+❌ PAS de multiples sections sur la home avant la grille
+❌ PAS de blocs services avec icônes sur la home
+❌ PAS de textes longs et explicatifs
+❌ PAS de design surchargé
+❌ PAS de couleurs flashy
+
+Objectif : Un site web premium, élégant, professionnel qui respire la qualité et le minimalisme, exactement comme Beauty & The Bit.
