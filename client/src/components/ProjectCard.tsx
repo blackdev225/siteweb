@@ -18,10 +18,10 @@ export function ProjectCard({ project, onClick, className, aspectRatio = "video"
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8 }}
       className={`group relative cursor-pointer overflow-hidden bg-neutral-100 ${className}`}
       onClick={() => onClick(project)}
     >
@@ -29,25 +29,19 @@ export function ProjectCard({ project, onClick, className, aspectRatio = "video"
         <img
           src={project.imageUrl}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
         />
       </div>
       
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-6 md:p-8">
-        <div className="flex justify-end">
-          <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white bg-white/10 backdrop-blur-sm">
-            <Plus className="w-5 h-5" />
-          </div>
-        </div>
-        
-        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <p className="text-white/70 text-sm uppercase tracking-widest mb-2 font-medium">
-            {project.subtitle || project.type}
-          </p>
-          <h3 className="text-white text-2xl md:text-3xl font-display font-bold leading-tight">
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex flex-col justify-center items-center p-6 md:p-8 opacity-0 group-hover:opacity-100">
+        <div className="text-center">
+          <h3 className="text-white text-2xl md:text-3xl font-display font-bold uppercase tracking-tighter leading-tight mb-1">
             {project.title}
           </h3>
+          <p className="text-white/60 text-xs font-serif italic tracking-widest">
+            {project.subtitle || project.type}
+          </p>
         </div>
       </div>
     </motion.div>

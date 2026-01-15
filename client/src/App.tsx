@@ -13,6 +13,7 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { LanguageProvider } from "@/hooks/use-language";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -49,8 +50,10 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
         <Router />
         <Toaster />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

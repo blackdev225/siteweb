@@ -1,94 +1,77 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function About() {
+  const { t } = useLanguage();
+  
   return (
     <div className="bg-white text-black min-h-screen">
-      {/* Hero */}
-      <section className="h-screen relative flex items-center">
-        <div className="absolute inset-0 w-full h-full z-0">
-           {/* Unsplash: Minimalist office or architect working */}
+      <section className="h-screen relative flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
            <img 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560" 
-            alt="Studio Workspace" 
+            alt="Studio" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-white/90" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
         
-        <div className="relative z-10 max-w-[1800px] mx-auto px-6 md:px-12 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-           <motion.div
-             initial={{ opacity: 0, x: -50 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.8 }}
+        <div className="relative z-10 text-center text-white px-6">
+           <motion.h1
+             initial={{ opacity: 0, y: 30 }}
+             animate={{ opacity: 1, y: 0 }}
+             className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-4 leading-none"
            >
-             <h1 className="text-6xl md:text-8xl font-display font-bold uppercase tracking-tighter mb-8 leading-none">
-               The<br/>Studio
-             </h1>
-             <p className="text-xl md:text-2xl font-light leading-relaxed text-neutral-600 max-w-xl">
-               Vision Studio 360 is a boutique visualization practice based in Abidjan, dedicated to the art of architectural storytelling.
-             </p>
-           </motion.div>
+             {t("navAbout")}
+           </motion.h1>
+           <p className="text-lg md:text-2xl font-serif italic opacity-80 font-light">
+             Our Studio & Approach
+           </p>
         </div>
       </section>
 
-      {/* Story & Stats */}
-      <section className="py-24 px-6 md:px-12 max-w-[1800px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-           <div className="md:col-span-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest border-t border-black pt-4">Our Story</h3>
-           </div>
-           <div className="md:col-span-8">
-              <p className="text-2xl md:text-4xl font-light leading-tight mb-12">
-                We believe that every project has a unique narrative waiting to be uncovered. Our approach combines technical precision with artistic intuition to create images that not only show space, but evoke feeling.
-              </p>
-              
-              <div className="grid grid-cols-3 gap-8 border-t border-neutral-200 pt-8">
-                <div>
-                  <span className="block text-4xl md:text-6xl font-display font-bold mb-2">6+</span>
-                  <span className="text-sm text-neutral-500 uppercase tracking-wider">Years Experience</span>
-                </div>
-                <div>
-                  <span className="block text-4xl md:text-6xl font-display font-bold mb-2">50+</span>
-                  <span className="text-sm text-neutral-500 uppercase tracking-wider">Projects Delivered</span>
-                </div>
-                <div>
-                  <span className="block text-4xl md:text-6xl font-display font-bold mb-2">100%</span>
-                  <span className="text-sm text-neutral-500 uppercase tracking-wider">Client Satisfaction</span>
-                </div>
-              </div>
-           </div>
-        </div>
-      </section>
+      <section className="py-32 px-6 md:px-12 max-w-4xl mx-auto text-center">
+        <h2 className="text-4xl md:text-6xl font-display font-bold mb-12 uppercase tracking-tighter">Vision Studio 360</h2>
+        <p className="text-xl md:text-2xl font-light leading-relaxed text-neutral-500 mb-16">
+          Vision Studio 360 is a boutique architectural visualization studio based in Abidjan, Côte d'Ivoire. We are a collective of multidisciplinary artists united by a shared passion for storytelling through visual language.
+        </p>
 
-      {/* Services */}
-      <section className="bg-neutral-100 py-24 px-6 md:px-12">
-        <div className="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 py-16 border-y border-neutral-100">
           <div>
-            <h3 className="text-3xl font-display font-bold mb-8 uppercase">Services</h3>
-            <ul className="space-y-4 text-lg font-light text-neutral-600">
-               <li className="border-b border-neutral-200 pb-4">Architectural Visualization (CGI)</li>
-               <li className="border-b border-neutral-200 pb-4">Interior Rendering</li>
-               <li className="border-b border-neutral-200 pb-4">3D Animation & Walkthroughs</li>
-               <li className="border-b border-neutral-200 pb-4">Virtual Reality (VR) Experiences</li>
-               <li className="border-b border-neutral-200 pb-4">360° Interactive Tours</li>
-            </ul>
+            <span className="block text-5xl font-display font-bold mb-2">6+</span>
+            <span className="text-xs uppercase tracking-widest text-neutral-400">{t("years")} {t("experience")}</span>
           </div>
-          
           <div>
-            <h3 className="text-3xl font-display font-bold mb-8 uppercase">Founder</h3>
-            <div className="flex gap-6 items-start">
-               <div className="w-24 h-24 bg-neutral-300 rounded-full overflow-hidden shrink-0">
-                 {/* Placeholder Avatar */}
-                 <div className="w-full h-full bg-neutral-400 flex items-center justify-center text-white font-bold text-2xl">HZ</div>
-               </div>
-               <div>
-                  <h4 className="text-xl font-bold">Hans Daniel ZADY</h4>
-                  <p className="text-neutral-500 mb-4">Founder & Creative Director</p>
-                  <p className="text-neutral-600 leading-relaxed">
-                    With a background in architecture and a passion for digital art, Hans leads the studio with a keen eye for composition and light.
-                  </p>
-               </div>
-            </div>
+            <span className="block text-5xl font-display font-bold mb-2">50+</span>
+            <span className="text-xs uppercase tracking-widest text-neutral-400">{t("projects")}</span>
+          </div>
+          <div>
+            <span className="block text-5xl font-display font-bold mb-2">100%</span>
+            <span className="text-xs uppercase tracking-widest text-neutral-400">{t("satisfaction")}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">Our Services</h3>
+          <ul className="space-y-6 text-2xl font-display font-medium uppercase tracking-tighter">
+             <li>Architectural Visualization</li>
+             <li>Interior Design 3D</li>
+             <li>Cinematic Animations</li>
+             <li>Virtual Reality Experiences</li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">Expertise</h3>
+          <div className="flex flex-col items-center md:items-start">
+             <div className="w-32 h-32 bg-neutral-100 rounded-full mb-8 overflow-hidden grayscale">
+               <div className="w-full h-full bg-neutral-200" />
+             </div>
+             <h4 className="text-xl font-bold uppercase tracking-tighter mb-2">Hans Daniel ZADY</h4>
+             <p className="text-neutral-400 text-sm uppercase tracking-widest mb-6">Founder & Lead 3D Visualizer</p>
+             <a href="#" className="text-xs font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
           </div>
         </div>
       </section>
