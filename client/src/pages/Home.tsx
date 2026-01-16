@@ -4,20 +4,32 @@ import { ArrowDown } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 
-const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=2560",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2560",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2560"
+const HERO_SLIDES = [
+  {
+    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=2560",
+    title: "Cinematic Vision"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2560",
+    title: "Elegance in Detail"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560",
+    title: "Structural Art"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2560",
+    title: "Spatial Storytelling"
+  }
 ];
 
 export default function Home() {
   const { t } = useLanguage();
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
@@ -59,37 +71,43 @@ export default function Home() {
       <section className="h-screen w-full relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <AnimatePresence mode="wait">
-            <motion.img
-              key={currentImage}
-              src={HERO_IMAGES[currentImage]}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 2, ease: "easeInOut" }}
-              className="w-full h-full object-cover"
-            />
+              className="relative w-full h-full"
+            >
+              <motion.img
+                src={HERO_SLIDES[currentSlide].image}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 5, ease: "linear" }}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+              
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="text-white/60 text-xs font-serif italic tracking-[0.4em] uppercase mb-4"
+                >
+                  {HERO_SLIDES[currentSlide].title}
+                </motion.span>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="font-display font-bold text-6xl md:text-9xl text-white tracking-tighter uppercase"
+                >
+                  Vision Studio 360
+                </motion.h1>
+              </div>
+            </motion.div>
           </AnimatePresence>
-          <div className="absolute inset-0 bg-black/30" />
-        </div>
-
-        <div className="relative z-10 text-center px-4">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display font-bold text-6xl md:text-9xl text-white tracking-tighter mb-4 uppercase"
-          >
-            Vision Studio 360
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="font-serif italic text-lg md:text-2xl text-white/80 font-light"
-          >
-            {t("heroTagline")}
-          </motion.p>
         </div>
 
         <motion.div 

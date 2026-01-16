@@ -7,21 +7,30 @@ import { Project } from "@shared/schema";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
 
-const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2560",
-  "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=2560",
-  "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2560"
+const HERO_SLIDES = [
+  {
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2560",
+    title: "Virtual Worlds"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=2560",
+    title: "Infinite Realms"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2560",
+    title: "Digital Realities"
+  }
 ];
 
 export default function Interactive() {
   const { data: projects, isLoading } = useProjects({ type: 'vr' });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { t } = useLanguage();
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
@@ -31,24 +40,37 @@ export default function Interactive() {
       <section className="h-screen relative overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
           <AnimatePresence mode="wait">
-            <motion.img 
-              key={currentImage}
-              src={HERO_IMAGES[currentImage]} 
+            <motion.div
+              key={currentSlide}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.2 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 2 }}
-              className="w-full h-full object-cover grayscale"
-            />
+              className="w-full h-full"
+            >
+              <img 
+                src={HERO_SLIDES[currentSlide].image} 
+                className="w-full h-full object-cover grayscale opacity-20"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-neutral-400 text-xs font-serif italic tracking-[0.4em] uppercase mb-4"
+                >
+                  {HERO_SLIDES[currentSlide].title}
+                </motion.span>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter leading-none"
+                >
+                  {t("navInteractive")}
+                </motion.h1>
+              </div>
+            </motion.div>
           </AnimatePresence>
-        </div>
-        <div className="relative z-10 text-center max-w-4xl px-6">
-          <h1 className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-6 leading-none">
-            {t("navInteractive")}
-          </h1>
-          <p className="text-xl md:text-2xl text-neutral-400 font-serif italic">
-            Virtual Reality & 360° Experiences
-          </p>
         </div>
       </section>
 

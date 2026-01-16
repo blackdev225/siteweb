@@ -18,19 +18,25 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
-const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2560"
+const HERO_SLIDES = [
+  {
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
+    title: "Get in Touch"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2560",
+    title: "Start a Project"
+  }
 ];
 
 export default function Contact() {
   const { mutate, isPending } = useSubmitContact();
   const { t } = useLanguage();
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 7000);
     return () => clearInterval(timer);
   }, []);
@@ -57,23 +63,38 @@ export default function Contact() {
       <section className="h-[60vh] relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <AnimatePresence mode="wait">
-            <motion.img 
-              key={currentImage}
-              src={HERO_IMAGES[currentImage]} 
+            <motion.div
+              key={currentSlide}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 2 }}
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full"
+            >
+              <img 
+                src={HERO_SLIDES[currentSlide].image} 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-white/60 text-xs font-serif italic tracking-[0.4em] uppercase mb-4"
+                >
+                  {HERO_SLIDES[currentSlide].title}
+                </motion.span>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter"
+                >
+                  {t("navContact")}
+                </motion.h1>
+              </div>
+            </motion.div>
           </AnimatePresence>
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <div className="relative z-10 text-center text-white">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-4">
-            {t("navContact")}
-          </motion.h1>
-          <p className="text-lg md:text-2xl font-serif italic opacity-80 font-light">Let's Create Something Extraordinary</p>
         </div>
       </section>
 
