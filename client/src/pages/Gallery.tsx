@@ -4,7 +4,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Project } from "@shared/schema";
 import { cn } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Loader2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 
 type FilterType = "all" | "exterior" | "interior" | "animation";
@@ -69,14 +69,49 @@ export default function Gallery() {
       </div>
 
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-[100vw] w-full h-[100vh] p-0 border-none bg-black text-white rounded-none">
+        <DialogContent className="max-w-[100vw] w-full h-[100vh] p-0 border-none bg-white text-black rounded-none">
           {selectedProject && (
-            <div className="w-full h-full flex flex-col items-center justify-center p-6">
+            <div className="w-full h-full flex flex-col md:flex-row items-center justify-center p-0 md:p-12 relative">
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-8 right-8 z-50 p-2 hover:opacity-50 transition-opacity"
+              >
+                <X className="w-8 h-8" />
+              </button>
+
+              <div className="w-full md:w-3/5 h-1/2 md:h-full flex items-center justify-center p-6 md:p-12">
                 <img 
                   src={selectedProject.imageUrl} 
                   alt={selectedProject.title} 
-                  className="max-w-full max-h-[85vh] object-contain"
+                  className="max-w-full max-h-full object-contain"
                 />
+              </div>
+
+              <div className="w-full md:w-2/5 h-1/2 md:h-full flex flex-col justify-center p-8 md:p-12 md:pl-0">
+                <div className="max-w-md">
+                  <h3 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tighter mb-4 text-primary leading-none">
+                    {selectedProject.title}
+                  </h3>
+                  <p className="text-neutral-400 text-sm md:text-base font-serif italic mb-8">
+                    {selectedProject.subtitle || "Undisclosed"}
+                  </p>
+                  <p className="text-lg md:text-xl font-light leading-relaxed text-neutral-600 mb-12">
+                    {selectedProject.description}
+                  </p>
+                  
+                  <div className="flex gap-8 items-center pt-12 border-t border-neutral-100">
+                     <button className="p-2 hover:bg-neutral-50 transition-colors">
+                        <ChevronLeft className="w-6 h-6" />
+                     </button>
+                     <button className="text-xs font-bold uppercase tracking-widest border-b border-black pb-1">
+                        Back
+                     </button>
+                     <button className="p-2 hover:bg-neutral-50 transition-colors">
+                        <ChevronRight className="w-6 h-6" />
+                     </button>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </DialogContent>
