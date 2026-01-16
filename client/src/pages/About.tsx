@@ -71,7 +71,7 @@ export default function About() {
       <section className="py-32 px-6 md:px-12 max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-display font-bold mb-12 uppercase tracking-tighter">Vision Studio 360</h2>
         <p className="text-xl md:text-2xl font-light leading-relaxed text-neutral-500 mb-16">
-          Vision Studio 360 is a boutique architectural visualization studio based in Abidjan, Côte d'Ivoire. We are a collective of multidisciplinary artists united by a shared passion for storytelling through visual language.
+          {t("studioDescription")}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 py-16 border-y border-neutral-100">
@@ -92,24 +92,44 @@ export default function About() {
 
       <section className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
         <div>
-          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">Our Services</h3>
+          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">{t("ourServices")}</h3>
           <ul className="space-y-6 text-2xl font-display font-medium uppercase tracking-tighter">
-             <li>Architectural Visualization</li>
-             <li>Interior Design 3D</li>
-             <li>Cinematic Animations</li>
-             <li>Virtual Reality Experiences</li>
+             <li>{t("archViz")}</li>
+             <li>{t("interior3d")}</li>
+             <li>{t("cinematicAnim")}</li>
+             <li>{t("vrExperience")}</li>
           </ul>
         </div>
         
         <div>
-          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">Expertise</h3>
-          <div className="flex flex-col items-center md:items-start">
-             <div className="w-32 h-32 bg-neutral-100 rounded-full mb-8 overflow-hidden grayscale">
-               <div className="w-full h-full bg-neutral-200" />
-             </div>
-             <h4 className="text-xl font-bold uppercase tracking-tighter mb-2">Hans Daniel ZADY</h4>
-             <p className="text-neutral-400 text-sm uppercase tracking-widest mb-6">Founder & Lead 3D Visualizer</p>
-             <a href="#" className="text-xs font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
+          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">{t("expertise")}</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="flex flex-col items-center md:items-start">
+               <div className="w-24 h-24 bg-neutral-100 rounded-full mb-6 overflow-hidden grayscale">
+                 <div className="w-full h-full bg-neutral-200" />
+               </div>
+               <h4 className="text-lg font-bold uppercase tracking-tighter mb-1">Hans Daniel ZADY</h4>
+               <p className="text-neutral-400 text-[10px] uppercase tracking-widest mb-4">Founder & Lead 3D Visualizer</p>
+               <a href="#" className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
+            </div>
+
+            <div className="flex flex-col items-center md:items-start">
+               <div className="w-24 h-24 bg-neutral-100 rounded-full mb-6 overflow-hidden grayscale">
+                 <div className="w-full h-full bg-neutral-200" />
+               </div>
+               <h4 className="text-lg font-bold uppercase tracking-tighter mb-1">Abigail KOUADIO</h4>
+               <p className="text-neutral-400 text-[10px] uppercase tracking-widest mb-4">3D Artist & Interior Designer</p>
+               <a href="#" className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
+            </div>
+
+            <div className="flex flex-col items-center md:items-start">
+               <div className="w-24 h-24 bg-neutral-100 rounded-full mb-6 overflow-hidden grayscale">
+                 <div className="w-full h-full bg-neutral-200" />
+               </div>
+               <h4 className="text-lg font-bold uppercase tracking-tighter mb-1">Joane LIALI</h4>
+               <p className="text-neutral-400 text-[10px] uppercase tracking-widest mb-4">Architectural Visualizer</p>
+               <a href="#" className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
+            </div>
           </div>
         </div>
       </section>
