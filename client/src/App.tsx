@@ -14,6 +14,7 @@ import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { LanguageProvider } from "@/hooks/use-language";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -50,10 +51,19 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <Router />
-        <Toaster />
-      </LanguageProvider>
+      <HelmetProvider>
+        <LanguageProvider>
+          <Helmet>
+            <title>Vision Studio 360 | Cinematic Architectural Visualization</title>
+            <meta name="description" content="Vision Studio 360 specializes in cinematic architectural visualization, VR, and interactive 360 experiences for global projects." />
+            <meta property="og:title" content="Vision Studio 360 | Cinematic Architectural Visualization" />
+            <meta property="og:description" content="Premium architectural visualization studio delivering high-end stills, animations, and VR experiences." />
+            <meta property="og:type" content="website" />
+          </Helmet>
+          <Router />
+          <Toaster />
+        </LanguageProvider>
+      </HelmetProvider>
     </QueryClientProvider>
   );
 }

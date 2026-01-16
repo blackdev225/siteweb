@@ -22,14 +22,15 @@ export function ProjectCard({ project, onClick, className, aspectRatio = "video"
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className={`group relative cursor-pointer overflow-hidden bg-neutral-100 ${className}`}
+      className={`group relative cursor-pointer overflow-hidden bg-neutral-100 will-change-transform active:scale-[0.98] transition-transform ${className}`}
       onClick={() => onClick(project)}
     >
       <div className={`w-full ${aspectClasses[aspectRatio]} overflow-hidden`}>
         <img
           src={project.imageUrl}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+          loading="lazy"
+          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
         />
       </div>
       

@@ -84,7 +84,8 @@ export default function Home() {
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 5, ease: "linear" }}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
+                loading="eager"
               />
               <div className="absolute inset-0 bg-black/40" />
               
@@ -101,7 +102,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-display font-bold text-6xl md:text-9xl text-white tracking-tighter uppercase"
+                  className="font-display font-bold text-4xl md:text-9xl text-white tracking-tighter uppercase px-4 md:px-0"
                 >
                   Vision Studio 360
                 </motion.h1>
@@ -121,13 +122,13 @@ export default function Home() {
       </section>
 
       {/* SCREEN 2: CONTENT */}
-      <section className="bg-white py-24 px-6 md:px-0">
-        <div className="max-w-4xl mx-auto text-center mb-24">
+      <section className="bg-white py-24 px-4 md:px-0">
+        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-24">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-display font-bold mb-4"
+            className="text-3xl md:text-5xl font-display font-bold mb-4 leading-[1.2]"
           >
             {t("introTitle")}
           </motion.h2>
@@ -135,29 +136,30 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-xl md:text-2xl font-serif italic text-neutral-400"
+            className="text-lg md:text-2xl font-serif italic text-neutral-400 leading-[1.6]"
           >
             {t("introSub")}
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-1 md:gap-0">
           {categories.map((cat, index) => (
-            <Link key={cat.id} href={cat.link} className="group relative h-[600px] block overflow-hidden">
+            <Link key={cat.id} href={cat.link} className="group relative h-[400px] md:h-[600px] block overflow-hidden will-change-transform">
               <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-105">
                 <img 
                   src={cat.image} 
                   alt={cat.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500" />
               </div>
               
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 z-10 text-center text-white">
-                <h3 className="text-3xl font-display font-bold uppercase tracking-tighter mb-1">
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 z-10 text-center text-white active:scale-95 transition-transform">
+                <h3 className="text-2xl md:text-3xl font-display font-bold uppercase tracking-tighter mb-1 leading-[1.2]">
                   {cat.title}
                 </h3>
-                <p className="text-sm font-serif italic opacity-70">
+                <p className="text-sm font-serif italic opacity-70 leading-[1.6]">
                   {cat.label}
                 </p>
               </div>

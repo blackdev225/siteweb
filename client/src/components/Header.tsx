@@ -91,8 +91,9 @@ export function Header() {
 
             {/* Mobile Toggle */}
             <button 
-              className="md:hidden z-50 relative p-2"
+              className="md:hidden z-50 relative p-3 min-w-[44px] min-h-[44px] flex items-center justify-center active:scale-95 transition-transform"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6 text-black" />
@@ -111,15 +112,20 @@ export function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white flex items-center justify-center md:hidden"
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            onDragEnd={(_, info) => {
+              if (info.offset.y > 100) setIsMobileMenuOpen(false);
+            }}
+            className="fixed inset-0 z-40 bg-white flex items-center justify-center md:hidden touch-none"
           >
-            <nav className="flex flex-col items-center gap-8">
+            <nav className="flex flex-col items-center gap-12">
               {LINKS.map((link) => (
                 <Link 
                   key={link.href} 
                   href={link.href}
                   className={cn(
-                    "text-3xl font-display font-light uppercase tracking-tighter transition-colors",
+                    "text-3xl font-display font-light uppercase tracking-tighter transition-colors p-2 active:scale-95",
                     location === link.href ? "text-black" : "text-neutral-400 hover:text-black"
                   )}
                 >
