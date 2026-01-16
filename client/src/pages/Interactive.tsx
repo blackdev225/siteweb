@@ -1,26 +1,46 @@
 import { useProjects } from "@/hooks/use-projects";
 import { ProjectCard } from "@/components/ProjectCard";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Project } from "@shared/schema";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
+
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=2560"
+];
 
 export default function Interactive() {
   const { data: projects, isLoading } = useProjects({ type: 'vr' });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { t } = useLanguage();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="bg-white min-h-screen text-black">
       <section className="h-screen relative overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
-           <img 
-            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2560" 
-            alt="VR" 
-            className="w-full h-full object-cover grayscale opacity-20"
-          />
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={currentImage}
+              src={HERO_IMAGES[currentImage]} 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.2 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2 }}
+              className="w-full h-full object-cover grayscale"
+            />
+          </AnimatePresence>
         </div>
         <div className="relative z-10 text-center max-w-4xl px-6">
           <h1 className="text-6xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-6 leading-none">

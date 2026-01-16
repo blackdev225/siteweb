@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertMessageSchema, type InsertMessage } from "@shared/schema";
 import { useSubmitContact } from "@/hooks/use-contact";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import {
   Form,
@@ -17,9 +18,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2560"
+];
+
 export default function Contact() {
   const { mutate, isPending } = useSubmitContact();
   const { t } = useLanguage();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
   
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
@@ -42,11 +56,17 @@ export default function Contact() {
     <div className="bg-white min-h-screen">
       <section className="h-[60vh] relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560" 
-            alt="Contact" 
-            className="w-full h-full object-cover"
-          />
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={currentImage}
+              src={HERO_IMAGES[currentImage]} 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2 }}
+              className="w-full h-full object-cover"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 text-center text-white">

@@ -1,10 +1,26 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { ArrowDown } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2560"
+];
+
 export default function Home() {
   const { t } = useLanguage();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const categories = [
     { 
@@ -39,14 +55,20 @@ export default function Home() {
 
   return (
     <div className="bg-white scroll-smooth">
-      {/* SCREEN 1: HERO */}
+      {/* SCREEN 1: HERO SLIDESHOW */}
       <section className="h-screen w-full relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=2560" 
-            alt="Hero Architecture" 
-            className="w-full h-full object-cover"
-          />
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentImage}
+              src={HERO_IMAGES[currentImage]}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              className="w-full h-full object-cover"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-black/30" />
         </div>
 

@@ -1,18 +1,39 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/hooks/use-language";
+
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=2560",
+  "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=2560"
+];
 
 export default function About() {
   const { t } = useLanguage();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
   
   return (
     <div className="bg-white text-black min-h-screen">
       <section className="h-screen relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-           <img 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560" 
-            alt="Studio" 
-            className="w-full h-full object-cover"
-          />
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={currentImage}
+              src={HERO_IMAGES[currentImage]} 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2 }}
+              className="w-full h-full object-cover"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-black/40" />
         </div>
         
