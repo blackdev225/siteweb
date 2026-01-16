@@ -90,8 +90,8 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
-        <div>
+      <section className="py-32 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <div className="max-w-2xl">
           <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">{t("ourServices")}</h3>
           <ul className="space-y-6 text-2xl font-display font-medium uppercase tracking-tighter">
              <li>{t("archViz")}</li>
@@ -99,38 +99,6 @@ export default function About() {
              <li>{t("cinematicAnim")}</li>
              <li>{t("vrExperience")}</li>
           </ul>
-        </div>
-        
-        <div>
-          <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-neutral-400 mb-12">{t("expertise")}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            <div className="flex flex-col items-center md:items-start">
-               <div className="w-24 h-24 bg-neutral-100 rounded-full mb-6 overflow-hidden grayscale">
-                 <div className="w-full h-full bg-neutral-200" />
-               </div>
-               <h4 className="text-lg font-bold uppercase tracking-tighter mb-1">Hans Daniel ZADY</h4>
-               <p className="text-neutral-400 text-[10px] uppercase tracking-widest mb-4">Founder & Lead 3D Visualizer</p>
-               <a href="#" className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
-            </div>
-
-            <div className="flex flex-col items-center md:items-start">
-               <div className="w-24 h-24 bg-neutral-100 rounded-full mb-6 overflow-hidden grayscale">
-                 <div className="w-full h-full bg-neutral-200" />
-               </div>
-               <h4 className="text-lg font-bold uppercase tracking-tighter mb-1">Abigail KOUADIO</h4>
-               <p className="text-neutral-400 text-[10px] uppercase tracking-widest mb-4">3D Artist & Interior Designer</p>
-               <a href="#" className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
-            </div>
-
-            <div className="flex flex-col items-center md:items-start">
-               <div className="w-24 h-24 bg-neutral-100 rounded-full mb-6 overflow-hidden grayscale">
-                 <div className="w-full h-full bg-neutral-200" />
-               </div>
-               <h4 className="text-lg font-bold uppercase tracking-tighter mb-1">Joane LIALI</h4>
-               <p className="text-neutral-400 text-[10px] uppercase tracking-widest mb-4">Architectural Visualizer</p>
-               <a href="#" className="text-[10px] font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-opacity">LinkedIn</a>
-            </div>
-          </div>
         </div>
       </section>
     </div>
