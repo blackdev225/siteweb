@@ -1,0 +1,116 @@
+Améliore le site Vision Studio 360 pour optimiser l'expérience mobile et la fluidité :
+
+═══════════════════════════════════════════════════════════════
+OPTIMISATIONS MOBILE
+═══════════════════════════════════════════════════════════════
+
+1. HERO SECTION :
+- Sur mobile, réduire la taille du titre principal (text-4xl au lieu de text-6xl)
+- Ajouter padding horizontal pour éviter que le texte touche les bords
+- Assurer que l'image background garde un bon cadrage sur mobile (object-position: center)
+
+2. GRILLE CATÉGORIES :
+- Sur mobile et tablette, passer à 1 colonne (au lieu de 2x2)
+- Réduire la hauteur des cartes sur mobile (h-[400px] au lieu de h-[600px])
+- Améliorer l'espacement tactile (gap-1 entre les cartes sur mobile)
+
+3. NAVIGATION MOBILE :
+- Agrandir la zone cliquable du menu hamburger (p-3 minimum)
+- S'assurer que les liens du menu mobile sont bien espacés (gap-12)
+- Ajouter un effet de fermeture au swipe down
+
+4. TEXTES :
+- Réduire les tailles de police sur mobile pour une meilleure lisibilité
+- S'assurer que le line-height est optimal (1.2 pour les titres, 1.6 pour le texte)
+
+═══════════════════════════════════════════════════════════════
+OPTIMISATIONS PERFORMANCE & FLUIDITÉ
+═══════════════════════════════════════════════════════════════
+
+1. IMAGES :
+- Ajouter lazy loading sur TOUTES les images : loading="lazy"
+- Utiliser des images optimisées (WebP avec fallback JPG)
+- Ajouter des placeholders flous pendant le chargement (blur-up effect)
+
+2. ANIMATIONS :
+- Réduire ou désactiver les animations complexes sur mobile (useMediaQuery)
+- Utiliser will-change: transform sur les éléments qui s'animent
+- Limiter les animations simultanées (max 3 à la fois)
+
+3. SCROLL :
+- Implémenter un smooth scroll natif CSS : scroll-behavior: smooth
+- Désactiver les animations parallax sur mobile (impact performance)
+- Ajouter un debounce sur les événements scroll (optimisation)
+
+4. FONTS :
+- Précharger les fonts critiques avec <link rel="preload">
+- Utiliser font-display: swap pour éviter le flash de texte invisible
+- Limiter le nombre de font-weights chargés (garder seulement 300, 400, 600, 700)
+
+═══════════════════════════════════════════════════════════════
+EXPÉRIENCE UTILISATEUR
+═══════════════════════════════════════════════════════════════
+
+1. FEEDBACK VISUEL :
+- Ajouter un état loading pendant les transitions de page
+- Ajouter des micro-interactions sur les clics (scale-95 au tap)
+- Effet ripple sur les boutons tactiles
+
+2. GESTURES MOBILES :
+- Permettre le swipe horizontal sur les galeries (Embla Carousel)
+- Ajouter pull-to-refresh sur la page d'accueil (optionnel)
+- Supporter le pinch-to-zoom sur les images de projet
+
+3. ACCESSIBILITÉ :
+- Augmenter la taille minimale des zones tactiles (44x44px minimum)
+- Améliorer le contraste des textes (ratio 4.5:1 minimum)
+- Ajouter des focus states visibles pour la navigation au clavier
+
+4. LIGHTBOX/MODAL :
+- Permettre la fermeture par swipe down sur mobile
+- Ajouter la navigation par swipe gauche/droite
+- Optimiser le pinch-to-zoom dans la lightbox
+
+═══════════════════════════════════════════════════════════════
+CODE OPTIMIZATIONS
+═══════════════════════════════════════════════════════════════
+
+1. REACT PERFORMANCE :
+- Utiliser React.memo() sur les composants lourds
+- Implémenter useMemo et useCallback pour les fonctions/calculs coûteux
+- Code splitting avec React.lazy() pour les pages
+
+2. BUNDLE SIZE :
+- Analyser et réduire la taille du bundle (retirer les dépendances inutilisées)
+- Lazy load les composants non-critiques
+- Tree-shaking des librairies (importer seulement ce qui est utilisé)
+
+3. SEO :
+- Ajouter des meta tags Open Graph pour le partage social
+- Ajouter un sitemap.xml
+- Améliorer les meta descriptions de chaque page
+- Ajouter structured data (JSON-LD) pour les projets
+
+═══════════════════════════════════════════════════════════════
+TOUCH OPTIMIZATIONS SPÉCIFIQUES
+═══════════════════════════════════════════════════════════════
+
+Sur mobile, améliorer :
+- Désactiver le zoom sur double-tap (user-scalable=no dans viewport meta)
+- Ajouter -webkit-tap-highlight-color: transparent pour un look plus app-like
+- Utiliser touch-action: manipulation pour des interactions plus rapides
+- Implémenter des momentum scrolling (-webkit-overflow-scrolling: touch)
+
+═══════════════════════════════════════════════════════════════
+TESTS À EFFECTUER
+═══════════════════════════════════════════════════════════════
+
+Après les modifications, teste :
+1. Performance mobile sur Chrome DevTools (Lighthouse score > 90)
+2. Responsive design sur toutes les tailles (320px à 2560px)
+3. Navigation tactile fluide
+4. Temps de chargement < 3 secondes
+5. Pas de layout shift (CLS < 0.1)
+6. Smooth scroll sur toutes les pages
+
+Garde le design minimaliste et élégant. Privilégie la performance et l'expérience utilisateur.
