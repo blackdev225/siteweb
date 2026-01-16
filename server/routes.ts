@@ -4,6 +4,13 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { insertMessageSchema } from "@shared/schema";
+import rateLimit from "express-rate-limit";
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 3, // 3 requests per 15 mins
+  message: { message: "Too many contact requests, please try again later" }
+});
 
 export async function registerRoutes(
   httpServer: Server,
@@ -42,8 +49,13 @@ export async function registerRoutes(
 
   // === Contact ===
 
-  app.post(api.contact.submit.path, async (req, res) => {
+  app.post(api.contact.submit.path, contactLimiter, async (req, res) => {
     try {
+      // Honeypot check
+      if (req.body.website) {
+        return res.status(400).json({ message: "Bot detected" });
+      }
+
       const input = api.contact.submit.input.parse(req.body);
       const message = await storage.createMessage(input);
       res.status(201).json(message);

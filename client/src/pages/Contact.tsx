@@ -52,7 +52,14 @@ export default function Contact() {
     },
   });
 
+  const [mountedTime] = useState(Date.now());
+
   function onSubmit(data: InsertMessage) {
+    const timeToSubmit = Date.now() - mountedTime;
+    if (timeToSubmit < 3000) {
+      console.warn("Spam protection: Submission too fast");
+      return;
+    }
     mutate(data, {
       onSuccess: () => form.reset()
     });
@@ -103,6 +110,11 @@ export default function Contact() {
           <h2 className="text-3xl font-display font-bold uppercase tracking-tighter mb-12">{t("startProject")}</h2>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+              {/* Honeypot field */}
+              <div className="hidden" aria-hidden="true">
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+              </div>
+
               <FormField
                 control={form.control}
                 name="name"

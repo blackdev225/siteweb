@@ -31,7 +31,12 @@ export const messages = pgTable("messages", {
 // === SCHEMAS ===
 
 export const insertProjectSchema = createInsertSchema(projects).omit({ id: true, createdAt: true });
-export const insertMessageSchema = createInsertSchema(messages).omit({ id: true, createdAt: true });
+export const insertMessageSchema = createInsertSchema(messages).extend({
+  name: z.string().min(2).max(100).regex(/^[a-zA-Z\s'-]+$/, "Invalid characters in name"),
+  email: z.string().email().max(255),
+  phone: z.string().regex(/^\+?[0-9\s-()]+$/, "Invalid phone format").optional().or(z.literal("")),
+  message: z.string().min(10).max(2000),
+}).omit({ id: true, createdAt: true });
 
 // === EXPLICIT TYPES ===
 
