@@ -17,6 +17,22 @@ export default function Gallery() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { t } = useLanguage();
 
+  const handlePrevious = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!projects || !selectedProject) return;
+    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
+    const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+    setSelectedProject(projects[prevIndex]);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!projects || !selectedProject) return;
+    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
+    const nextIndex = (currentIndex + 1) % projects.length;
+    setSelectedProject(projects[nextIndex]);
+  };
+
   const filters: { id: FilterType; label: string }[] = [
     { id: "all", label: "All" },
     { id: "exterior", label: "Exteriors" },
@@ -99,15 +115,20 @@ export default function Gallery() {
                     {selectedProject.description}
                   </p>
                   
-                  <div className="flex gap-8 items-center pt-12 border-t border-neutral-100">
-                     <button className="p-2 hover:bg-neutral-50 transition-colors">
-                        <ChevronLeft className="w-6 h-6" />
+                  <div className="flex gap-12 items-center pt-12 border-t border-neutral-100">
+                     <button 
+                       onClick={handlePrevious}
+                       className="p-4 hover:bg-neutral-50 transition-colors rounded-full"
+                       aria-label="Previous image"
+                     >
+                        <ChevronLeft className="w-8 h-8" />
                      </button>
-                     <button className="text-xs font-bold uppercase tracking-widest border-b border-black pb-1">
-                        Back
-                     </button>
-                     <button className="p-2 hover:bg-neutral-50 transition-colors">
-                        <ChevronRight className="w-6 h-6" />
+                     <button 
+                       onClick={handleNext}
+                       className="p-4 hover:bg-neutral-50 transition-colors rounded-full"
+                       aria-label="Next image"
+                     >
+                        <ChevronRight className="w-8 h-8" />
                      </button>
                   </div>
                 </div>
