@@ -6,7 +6,7 @@ interface ProjectCardProps {
   project: Project;
   onClick: (project: Project) => void;
   className?: string;
-  aspectRatio?: "video" | "square" | "portrait";
+  aspectRatio?: "video" | "square" | "portrait" | "auto";
 }
 
 export function ProjectCard({ project, onClick, className, aspectRatio = "video" }: ProjectCardProps) {
@@ -14,6 +14,7 @@ export function ProjectCard({ project, onClick, className, aspectRatio = "video"
     video: "aspect-video",
     square: "aspect-square",
     portrait: "aspect-[3/4]",
+    auto: "aspect-auto h-full",
   };
 
   return (

@@ -33,6 +33,14 @@ export default function Gallery() {
     setSelectedProject(projects[nextIndex]);
   };
 
+  const getGridSpan = (imageUrl: string) => {
+    const isWide = imageUrl.toLowerCase().includes('landscape') || imageUrl.toLowerCase().includes('wide');
+    if (isWide) {
+      return "lg:col-span-3 md:col-span-2 col-span-1";
+    }
+    return "lg:col-span-2 md:col-span-1 col-span-1";
+  };
+
   const filters: { id: FilterType; label: string }[] = [
     { id: "all", label: "All" },
     { id: "exterior", label: "Exteriors" },
@@ -71,25 +79,19 @@ export default function Gallery() {
             <Loader2 className="w-8 h-8 animate-spin text-neutral-200" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
-            {projects?.map((project) => {
-              const isLandscape = project.imageUrl.includes('landscape') || true; // Logic to determine if spans multiple columns
-              return (
-                <div 
-                  key={project.id} 
-                  className={cn(
-                    "col-span-1 md:col-span-2 lg:col-span-2",
-                    isLandscape && "lg:col-span-3"
-                  )}
-                >
-                  <ProjectCard 
-                    project={project} 
-                    onClick={setSelectedProject}
-                    aspectRatio="video"
-                  />
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+            {projects?.map((project) => (
+              <div 
+                key={project.id} 
+                className={cn(getGridSpan(project.imageUrl))}
+              >
+                <ProjectCard 
+                  project={project} 
+                  onClick={setSelectedProject}
+                  aspectRatio="auto"
+                />
+              </div>
+            ))}
           </div>
         )}
       </div>
