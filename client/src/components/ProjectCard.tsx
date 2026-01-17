@@ -31,7 +31,7 @@ export function ProjectCard({ project, onClick, className, aspectRatio = "video"
           src={project.imageUrl}
           alt={project.title}
           loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-[10000ms] ease-out group-hover:scale-110 motion-safe:animate-[ken-burns_20s_ease-in-out_infinite_alternate]"
         />
       </div>
       
