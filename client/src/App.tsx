@@ -28,6 +28,16 @@ function ScrollToTop() {
 }
 
 function Router() {
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
