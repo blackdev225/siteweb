@@ -71,15 +71,25 @@ export default function Gallery() {
             <Loader2 className="w-8 h-8 animate-spin text-neutral-200" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
-            {projects?.map((project) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                onClick={setSelectedProject}
-                aspectRatio="square"
-              />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+            {projects?.map((project) => {
+              const isLandscape = project.imageUrl.includes('landscape') || true; // Logic to determine if spans multiple columns
+              return (
+                <div 
+                  key={project.id} 
+                  className={cn(
+                    "col-span-1 md:col-span-2 lg:col-span-2",
+                    isLandscape && "lg:col-span-3"
+                  )}
+                >
+                  <ProjectCard 
+                    project={project} 
+                    onClick={setSelectedProject}
+                    aspectRatio="video"
+                  />
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
