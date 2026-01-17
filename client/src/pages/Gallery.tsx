@@ -97,12 +97,15 @@ export default function Gallery() {
       </div>
 
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-[100vw] w-full h-[100vh] p-0 border-none bg-white text-black rounded-none">
+        <DialogContent 
+          className="max-w-[100vw] w-full h-[100vh] p-0 border-none bg-white text-black rounded-none [&>button]:hidden"
+        >
           {selectedProject && (
             <div className="w-full h-full flex flex-col md:flex-row items-center justify-center p-0 md:p-12 relative">
               <button 
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-8 right-8 z-50 p-2 hover:opacity-50 transition-opacity"
+                aria-label="Close"
               >
                 <X className="w-8 h-8" />
               </button>
