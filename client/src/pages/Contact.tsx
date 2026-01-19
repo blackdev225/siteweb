@@ -20,11 +20,11 @@ import { Button } from "@/components/ui/button";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-1.jpg",
     title: "Get in Touch"
   },
   {
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-4.jpg",
     title: "Start a Project"
   }
 ];

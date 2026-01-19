@@ -2,29 +2,66 @@ import { useProjects } from "@/hooks/use-projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Project } from "@shared/schema";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
+
+// Images de fallback au cas où la vidéo ne charge pas
+const HERO_SLIDES = [
+  {
+    image: "/images/hero/hero-1.jpg",
+    title: "Virtual Reality"
+  },
+  {
+    image: "/images/hero/hero-2.jpg",
+    title: "360° Experiences"
+  }
+];
 
 export default function Interactive() {
   const { data: projects, isLoading } = useProjects({ type: 'vr' });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { t } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoError, setVideoError] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="bg-white min-h-screen text-black">
       <section className="h-screen relative overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover grayscale opacity-30"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-apartment-architecture-at-dusk-4022-large.mp4" type="video/mp4" />
-          </video>
+          {!videoError ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover grayscale opacity-30"
+              onError={() => setVideoError(true)}
+            >
+              <source src="/video/video-1.mp4" type="video/mp4" />
+            </video>
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentSlide}
+                src={HERO_SLIDES[currentSlide].image}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2 }}
+                className="w-full h-full object-cover grayscale opacity-30"
+                alt={HERO_SLIDES[currentSlide].title}
+              />
+            </AnimatePresence>
+          )}
           <div className="absolute inset-0 bg-black/20" />
         </div>
         <div className="relative z-10 text-center max-w-4xl px-6">
@@ -88,7 +125,7 @@ export default function Interactive() {
         <DialogContent className="max-w-[100vw] w-full h-[100vh] p-0 border-none bg-black text-white rounded-none">
           {selectedProject && (
             <div className="w-full h-full flex flex-col items-center justify-center p-6">
-               <img src={selectedProject.imageUrl} className="max-w-full max-h-[80vh] object-contain mb-8" />
+               <img src={selectedProject.imageUrl} className="max-w-full max-h-[80vh] object-contain mb-8" alt={selectedProject.title} />
                <h2 className="text-4xl font-display font-bold uppercase tracking-tighter">{selectedProject.title}</h2>
                <p className="text-neutral-500 font-serif italic">{t("experience")}</p>
             </div>

@@ -9,19 +9,18 @@ import { useLanguage } from "@/hooks/use-language";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1552945233-0c4659b8be56?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-2.jpg",
     title: "Masterpieces"
   },
   {
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-4.jpg",
     title: "Architectural Gems"
   },
   {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero3.jpg",
     title: "Design Excellence"
   }
 ];
-
 export default function Featured() {
   const { data: projects, isLoading } = useProjects({ category: 'featured' });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

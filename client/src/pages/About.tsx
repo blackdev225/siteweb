@@ -4,15 +4,15 @@ import { useLanguage } from "@/hooks/use-language";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-1.jpg",
     title: "Our Workspace"
   },
   {
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-2.jpg",
     title: "Creative Minds"
   },
   {
-    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero3.jpg",
     title: "Boutique Craft"
   }
 ];

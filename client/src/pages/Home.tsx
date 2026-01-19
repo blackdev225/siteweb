@@ -6,19 +6,19 @@ import { useLanguage } from "@/hooks/use-language";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-1.jpg",
     title: "Cinematic Vision"
   },
   {
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-2.jpg",
     title: "Elegance in Detail"
   },
   {
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero3.jpg",
     title: "Structural Art"
   },
   {
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2560",
+    image: "/images/hero/hero-4.jpg",
     title: "Spatial Storytelling"
   }
 ];
@@ -38,28 +38,28 @@ export default function Home() {
     { 
       id: "featured",
       title: t("navFeatured"), 
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000",
+      image: "/images/hero/hero-1.jpg",
       link: "/featured",
       label: "Curated Projects"
     },
     { 
       id: "gallery",
       title: t("navGallery"), 
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000",
+      image: "/images/hero/hero-2.jpg",
       link: "/gallery",
       label: "Stills & Animations"
     },
     { 
       id: "interactive",
       title: t("navInteractive"), 
-      image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=2000",
+      image: "/images/hero/hero3.jpg",
       link: "/interactive",
       label: "VR & 360"
     },
     { 
       id: "about",
       title: t("navAbout"), 
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000",
+      image: "/images/hero/hero-4.jpg",
       link: "/about",
       label: "Our Studio"
     }
@@ -86,6 +86,7 @@ export default function Home() {
                 transition={{ duration: 5, ease: "linear" }}
                 className="w-full h-full object-cover object-center"
                 loading="eager"
+                alt={HERO_SLIDES[currentSlide].title}
               />
               <div className="absolute inset-0 bg-black/40" />
               
